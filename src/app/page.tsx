@@ -6,7 +6,7 @@ import { Leaf, ShoppingBag, MapPin, Phone, Mail, Check, Factory, Award, Globe, R
 
 const translations = {
   fr: {
-    nav: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact" },
+    nav: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact", carbon: "Empreinte Carbone" },
     hero: {
       badge: "🇹🇳 Certifié Ministère de l'Environnement",
       title: "L'éco-responsabilité en sac",
@@ -90,7 +90,7 @@ const translations = {
     footer: "© 2025 ECO BAG Tunisie - Sacs écologiques certifiés Ministère de l'Environnement"
   },
   ar: {
-    nav: { home: "الرئيسية", about: "من نحن", products: "منتجاتنا", contact: "اتصل بنا" },
+    nav: { home: "الرئيسية", about: "من نحن", products: "منتجاتنا", contact: "اتصل بنا", carbon: "البصمة الكربونية" },
     hero: {
       badge: "🇹🇳 معتمد من وزارة البيئة",
       title: "الاستدامة في كل كيس",
@@ -205,7 +205,7 @@ export default function Home() {
               <button onClick={() => scrollToSection('accueil')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.home}</button>
               <button onClick={() => scrollToSection('a-propos')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.about}</button>
               <button onClick={() => scrollToSection('produits')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.products}</button>
-              <button onClick={() => scrollToSection('empreinte')} className="text-gray-600 hover:text-green-600 transition font-medium">البصمة الكربونية</button>
+              <button onClick={() => scrollToSection('empreinte')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.carbon}</button>
               <button onClick={() => scrollToSection('contact')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.contact}</button>
             </nav>
 
@@ -228,7 +228,7 @@ export default function Home() {
             <button onClick={() => scrollToSection('accueil')} className="block w-full text-left text-gray-600 hover:text-green-600 py-2">{t.nav.home}</button>
             <button onClick={() => scrollToSection('a-propos')} className="block w-full text-left text-gray-600 hover:text-green-600 py-2">{t.nav.about}</button>
             <button onClick={() => scrollToSection('produits')} className="block w-full text-left text-gray-600 hover:text-green-600 py-2">{t.nav.products}</button>
-            <button onClick={() => scrollToSection('empreinte')} className="block w-full text-left text-gray-600 hover:text-green-600 py-2">البصمة الكربونية</button>
+            <button onClick={() => scrollToSection('empreinte')} className="block w-full text-left text-gray-600 hover:text-green-600 py-2">{t.nav.carbon}</button>
             <button onClick={() => scrollToSection('contact')} className="block w-full text-left text-gray-600 hover:text-green-600 py-2">{t.nav.contact}</button>
           </nav>
         )}
