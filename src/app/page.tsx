@@ -1,244 +1,270 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import { Leaf, ShoppingBag, MapPin, Phone, Mail, Check, Factory } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "ECO BAG Tunisie | Sacs et emballages écologiques",
-  description: "Fabricant tunisien de sacs en tissu non-tissé et emballages écologiques. 100% écologique, réutilisable et personnalisable.",
-  keywords: "sacs écologiques, emballages tunisie, tissu non-tissé, sacs réutilisables, ecobag",
-  openGraph: {
-    title: "ECO BAG Tunisie",
-    description: "Sacs et emballages écologiques made in Tunisia",
-    type: "website",
+const translations = {
+  fr: {
+    nav: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact" },
+    hero: {
+      badge: "🇹🇳 Fabrication 100% Tunisienne",
+      title: "L'éco-responsabilité en sac",
+      subtitle: "Sacs et emballages en tissu non-tissé de haute qualité",
+      cta1: "Demander un devis",
+      cta2: "Voir les produits"
+    },
+    stats: { delivered: "Sacs livrés", clients: "Clients satisfaits", eco: "Taux de recyclage" },
+    about: {
+      title: "À propos d'ECO BAG",
+      desc1: "ECO BAG est une entreprise tunisienne spécialisée dans la fabrication de sacs en tissu non-tissé et d'emballages écologiques.",
+      desc2: "Notre mission : offrir des solutions d'emballage durables, réutilisables et personnalisables pour les entreprises et les commerçants.",
+      features: ["Tissu non-tissé premium", "Personnalisable (logo, couleurs)", "Réutilisable & durable", "Fabriqué en Tunisie"]
+    },
+    products: {
+      title: "Nos Produits",
+      items: [
+        { name: "Sacs Cabas", desc: "Format standard, anses renforcées", price: "À partir de 1.500 DT" },
+        { name: "Pochettes & Sachets", desc: "Petit format, idéal cadeaux", price: "À partir de 0.800 DT" },
+        { name: "Emballages Personnalisés", desc: "Votre logo, vos couleurs", price: "Sur devis" },
+        { name: "Sacs Industriels", desc: "Format XXL, usage intensif", price: "Sur devis" }
+      ]
+    },
+    why: {
+      title: "Pourquoi choisir ECO BAG ?",
+      items: [
+        { title: "100% Écologique", desc: "Matériaux recyclables, production éco-responsable" },
+        { title: "Réutilisable", desc: "Durabilité supérieure, sacs qui durent des années" },
+        { title: "Personnalisable", desc: "Impression de votre logo et couleurs de marque" },
+        { title: "Prix Compétitif", desc: "Qualité premium à prix fabricant tunisien" },
+        { title: "Livraison Rapide", desc: "Délai court de production et livraison" },
+        { title: "Made in Tunisia", desc: "Fabrication 100% tunisienne, économie locale" }
+      ]
+    },
+    contact: {
+      title: "Contactez-nous",
+      subtitle: "Demandez votre devis gratuit",
+      phone: "+216 94 569 302",
+      email: "ecobagtunisie@gmail.com",
+      address: "3 Rue Karama, Montfleury, Tunis"
+    },
+    footer: "© 2024 ECO BAG Tunisie. Tous droits réservés."
   },
+  ar: {
+    nav: { home: "الرئيسية", about: "من نحن", products: "المنتجات", contact: "اتصل بنا" },
+    hero: {
+      badge: "🇹🇳 صناعة 100% تونسية",
+      title: "الاستدامة في كل حقيبة",
+      subtitle: "أكياس وعبوات صديقة للبيئة بجودة عالية",
+      cta1: "اطلب عرض سعر",
+      cta2: "شاهد المنتجات"
+    },
+    stats: { delivered: "كيس تم توصيله", clients: "عميل راضٍ", eco: "نسبة إعادة التدوير" },
+    about: {
+      title: "عن ECO BAG",
+      desc1: "ECO BAG شركة تونسية متخصصة في تصنيع الأكياس والعبوات الصديقة للبيئة من القماش غير المنسوج.",
+      desc2: "مهمتنا: تقديم حلول تعبئة مستدامة وقابلة لإعادة الاستخدام وقابلة للتخصيص للشركات والتجار.",
+      features: ["قماش غير منسوج فاخر", "قابل للتخصيص (شعار - ألوان)", "قابل لإعادة الاستخدام - متين", "صنع في تونس"]
+    },
+    products: {
+      title: "منتجاتنا",
+      items: [
+        { name: "أكياس كبيرة", desc: "الحجم القياسي، مقابض مقوّاة", price: "ابتداء من 1.500 دت" },
+        { name: "أكياس صغيرة", desc: "حجم صغير، مثالي للهدايا", price: "ابتداء من 0.800 دت" },
+        { name: "عبوات مخصصة", desc: "شعارك، ألوان علامتك التجارية", price: "حسب الطلب" },
+        { name: "أكياس صناعية", desc: "حجم كبير جداً، استخدام مكثف", price: "حسب الطلب" }
+      ]
+    },
+    why: {
+      title: "لماذا تختار ECO BAG؟",
+      items: [
+        { title: "صديق للبيئة 100%", desc: "مواد قابلة لإعادة التدوير، إنتاج مسؤول بيئياً" },
+        { title: "قابل لإعادة الاستخدام", desc: "متانة عالية، أكياس تدوم لسنوات" },
+        { title: "قابل للتخصيص", desc: "طباعة شعارك وألوان علامتك التجارية" },
+        { title: "أسعار تنافسية", desc: "جودة فاخرة بسعر الشركة التونسية" },
+        { title: "توصيل سريع", desc: "مدة إنتاج وتوصيل قصيرة" },
+        { title: "صنع في تونس", desc: "تصنيع 100% تونسي، اقتصاد محلي" }
+      ]
+    },
+    contact: {
+      title: "اتصل بنا",
+      subtitle: "اطلب عرض السعر المجاني الخاص بك",
+      phone: "00216 94 569 302",
+      email: "ecobagtunisie@gmail.com",
+      address: "3 شارع الكرامة، مونفلوري، تونس"
+    },
+    footer: "© 2024 ECO BAG تونس. جميع الحقوق محفوظة."
+  }
 };
 
 export default function Home() {
+  const [lang, setLang] = useState<"fr" | "ar">("fr");
+  const t = translations[lang];
+  const isRTL = lang === "ar";
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+    <div className={`min-h-screen bg-gray-50 ${isRTL ? "font-sans text-right" : ""}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
-              <ShoppingBag className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+              <Leaf className="w-6 h-6 text-white" />
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-green-800">ECO BAG</h1>
-              <p className="text-xs text-green-600">Tunisie</p>
-            </div>
+            <span className="text-xl font-bold text-green-800">ECO BAG</span>
           </div>
           <nav className="hidden md:flex gap-6">
-            <a href="#accueil" className="text-gray-600 hover:text-green-600 transition">Accueil</a>
-            <a href="#apropos" className="text-gray-600 hover:text-green-600 transition">À propos</a>
-            <a href="#produits" className="text-gray-600 hover:text-green-600 transition">Produits</a>
-            <a href="#contact" className="text-gray-600 hover:text-green-600 transition">Contact</a>
+            <a href="#accueil" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.home}</a>
+            <a href="#apropos" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.about}</a>
+            <a href="#produits" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.products}</a>
+            <a href="#contact" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.contact}</a>
           </nav>
-          <a href="tel:+21694569302" className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center gap-2">
-            <Phone className="w-4 h-4" />
-            <span className="hidden sm:inline">Appeler</span>
-          </a>
+          <div className="flex gap-2">
+            <button onClick={() => setLang("fr")} className={`px-3 py-1 rounded font-medium transition ${lang === "fr" ? "bg-green-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}>FR</button>
+            <button onClick={() => setLang("ar")} className={`px-3 py-1 rounded font-medium transition ${lang === "ar" ? "bg-green-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}>AR</button>
+          </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section id="accueil" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full mb-6">
-            <Leaf className="w-4 h-4" />
-            <span className="text-sm font-medium">100% Écologique</span>
+      <section id="accueil" className="bg-gradient-to-br from-green-900 via-green-800 to-green-700 text-white py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="bg-green-600/80 text-white px-4 py-1 rounded-full text-sm font-medium">{t.hero.badge}</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            L&apos;éco-responsabilité
-            <span className="text-green-600"> en sac</span>
-          </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Fabrication 100% Tunisienne de sacs et emballages en tissu non-tissé de haute qualité.
-            La solution durable pour votre entreprise.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:ecobagtunisie@gmail.com" className="bg-green-600 text-white px-8 py-4 rounded-xl hover:bg-green-700 transition font-semibold">
-              Demander un devis
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">{t.hero.title}</h1>
+          <p className="text-xl md:text-2xl text-green-100 mb-8 max-w-2xl">{t.hero.subtitle}</p>
+          <div className="flex flex-wrap gap-4">
+            <a href="#contact" className="bg-white text-green-800 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition inline-flex items-center gap-2">
+              <Phone className="w-5 h-5" />
+              {t.hero.cta1}
             </a>
-            <a href="#produits" className="bg-white text-green-600 border-2 border-green-600 px-8 py-4 rounded-xl hover:bg-green-50 transition font-semibold">
-              Voir les produits
+            <a href="#produits" className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-500 transition inline-flex items-center gap-2">
+              <ShoppingBag className="w-5 h-5" />
+              {t.hero.cta2}
             </a>
           </div>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            <div className="bg-white p-4 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-green-600">100%</div>
-              <div className="text-sm text-gray-600">Écologique</div>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-green-600">∞</div>
-              <div className="text-sm text-gray-600">Réutilisable</div>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-green-600">Custom</div>
-              <div className="text-sm text-gray-600">Personnalisable</div>
-            </div>
-            <div className="bg-white p-4 rounded-xl shadow-sm">
-              <div className="text-3xl font-bold text-green-600">TN</div>
-              <div className="text-sm text-gray-600">Made in Tunisie</div>
-            </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="bg-green-50 py-12 px-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-green-700">+500K</div>
+            <div className="text-gray-700 mt-1">{t.stats.delivered}</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-green-700">+150</div>
+            <div className="text-gray-700 mt-1">{t.stats.clients}</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-green-700">100%</div>
+            <div className="text-gray-700 mt-1">{t.stats.eco}</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-green-700">2019</div>
+            <div className="text-gray-700 mt-1">Depuis</div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="apropos" className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">À propos d&apos;ECO BAG</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Notre usine produit des sacs en tissu non-tissé et tous types d&apos;emballages écologiques pour les entreprises tunisiennes.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-green-50 p-8 rounded-2xl">
-              <Factory className="w-12 h-12 text-green-600 mb-4" />
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Production locale</h4>
-              <p className="text-gray-600">
-                Usine située à Montfleury, Tunis. Production artisanale avec des standards industriels de qualité.
-              </p>
+      {/* About */}
+      <section id="apropos" className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <Factory className="w-6 h-6 text-green-600" />
+              <h2 className="text-3xl font-bold text-gray-900">{t.about.title}</h2>
             </div>
-            <div className="bg-green-50 p-8 rounded-2xl">
-              <Leaf className="w-12 h-12 text-green-600 mb-4" />
-              <h4 className="text-xl font-bold text-gray-900 mb-3">Engagement écologique</h4>
-              <p className="text-gray-600">
-                Matériaux durables, processus de fabrication responsable, emballages biodégradables.
-              </p>
-            </div>
+            <p className="text-gray-700 text-lg leading-relaxed mb-4">{t.about.desc1}</p>
+            <p className="text-gray-700 text-lg leading-relaxed">{t.about.desc2}</p>
+            <ul className="mt-6 space-y-3">
+              {t.about.features.map((feature, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <Check className="w-5 h-5 text-green-500" />
+                  <span className="text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
-
-      {/* Products Section */}
-      <section id="produits" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Nos Produits</h3>
-            <p className="text-gray-600">Solutions d&apos;emballage adaptées à vos besoins</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
-              <div className="h-48 bg-green-100 flex items-center justify-center">
-                <ShoppingBag className="w-20 h-20 text-green-600" />
+          <div className="bg-green-100 rounded-2xl p-8">
+            <div className="bg-white rounded-xl overflow-hidden shadow-sm">
+              <div className="h-48 bg-green-600 flex items-center justify-center">
+                <Leaf className="w-24 h-24 text-white" />
               </div>
               <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Sacs Cabas</h4>
-                <p className="text-gray-600 mb-4">Grand format pour courses et événements. Personnalisable avec votre logo.</p>
-                <ul className="space-y-2 text-sm text-gray-500">
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Plusieurs tailles disponibles</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Anses renforcées</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Impression personnalisée</li>
-                </ul>
-              </div>
-            </div>
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
-              <div className="h-48 bg-green-100 flex items-center justify-center">
-                <ShoppingBag className="w-16 h-16 text-green-600" />
-              </div>
-              <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Pochettes</h4>
-                <p className="text-gray-600 mb-4">Format moyen pour boutiques et cadeaux. Élégant et pratique.</p>
-                <ul className="space-y-2 text-sm text-gray-500">
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Fermeture rabat</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Épaisseur 80-120g</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Couleurs variées</li>
-                </ul>
-              </div>
-            </div>
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
-              <div className="h-48 bg-green-100 flex items-center justify-center">
-                <ShoppingBag className="w-14 h-14 text-green-600" />
-              </div>
-              <div className="p-6">
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Emballages</h4>
-                <p className="text-gray-600 mb-4">Solutions sur mesure pour e-commerce et industrie.</p>
-                <ul className="space-y-2 text-sm text-gray-500">
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Formats personnalisés</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Quantités flexibles</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Livraison rapide</li>
-                </ul>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">ECO BAG</h3>
+                <p className="text-gray-600">Il se caractérise par sa durabilité et sa haute qualité c'est un modèle unique dans la préservation de l'environnement.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 px-4 bg-green-600 text-white">
+      {/* Products */}
+      <section id="produits" className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4">Pourquoi choisir ECO BAG ?</h3>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: Leaf, title: "Matériaux écologiques", desc: "Tissu non-tissé biodégradable et recyclable" },
-              { icon: Check, title: "Haute qualité", desc: "Épaisseur et finitions professionnelles" },
-              { icon: Factory, title: "Production locale", desc: "Made in Tunisia, circuits courts" },
-              { icon: ShoppingBag, title: "Personnalisation", desc: "Votre logo, vos couleurs, votre format" },
-              { icon: Phone, title: "Service client", desc: "Devis gratuit en 24h maximum" },
-              { icon: Mail, title: "Commande facile", desc: "Par email ou téléphone, livraison incluse" },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-green-700 p-6 rounded-xl">
-                <item.icon className="w-8 h-8 mb-3" />
-                <h4 className="text-lg font-bold mb-2">{item.title}</h4>
-                <p className="text-green-100">{item.desc}</p>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">{t.products.title}</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {t.products.items.map((product, i) => (
+              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                <div className="h-40 bg-green-600 flex items-center justify-center">
+                  <ShoppingBag className="w-16 h-16 text-white" />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-bold text-gray-900 mb-2">{product.name}</h3>
+                  <p className="text-gray-600 text-sm mb-3">{product.desc}</p>
+                  <div className="text-green-700 font-semibold">{product.price}</div>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Contactez-nous</h3>
-            <p className="text-gray-600">Demandez votre devis gratuit dès maintenant</p>
+      {/* Why Choose Us */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">{t.why.title}</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t.why.items.map((item, i) => (
+              <div key={i} className="bg-green-50 rounded-xl p-6 hover:bg-green-100 transition">
+                <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4 text-white">
+                  {i === 0 && <Leaf className="w-6 h-6" />}
+                  {i === 1 && <ShoppingBag className="w-6 h-6" />}
+                  {i === 2 && <Check className="w-6 h-6" />}
+                  {i === 3 && <Leaf className="w-6 h-6" />}
+                  {i === 4 && <ShoppingBag className="w-6 h-6" />}
+                  {i === 5 && <MapPin className="w-6 h-6" />}
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </div>
+            ))}
           </div>
-          <div className="bg-green-50 rounded-2xl p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Téléphone</p>
-                    <a href="tel:+21694569302" className="text-lg font-semibold text-gray-900 hover:text-green-600">+216 94 569 302</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Email</p>
-                    <a href="mailto:ecobagtunisie@gmail.com" className="text-lg font-semibold text-gray-900 hover:text-green-600">ecobagtunisie@gmail.com</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Adresse</p>
-                    <p className="text-lg font-semibold text-gray-900">3 Rue Karama, Montfleury, Tunis</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col justify-center">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h4 className="text-lg font-bold text-gray-900 mb-4">Horaires</h4>
-                  <div className="space-y-2 text-gray-600">
-                    <div className="flex justify-between"><span>Lundi - Vendredi</span><span>8h - 18h</span></div>
-                    <div className="flex justify-between"><span>Samedi</span><span>9h - 13h</span></div>
-                    <div className="flex justify-between"><span>Dimanche</span><span>Fermé</span></div>
-                  </div>
-                </div>
-              </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="py-16 px-4 bg-green-900 text-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-4">{t.contact.title}</h2>
+          <p className="text-center text-green-100 mb-12">{t.contact.subtitle}</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <a href={`tel:${t.contact.phone.replace(/\s/g, '')}`} className="bg-green-800 rounded-xl p-6 text-center hover:bg-green-700 transition">
+              <Phone className="w-10 h-10 mx-auto mb-4 text-green-300" />
+              <h3 className="font-semibold mb-2">Téléphone</h3>
+              <p className="text-green-100">{t.contact.phone}</p>
+            </a>
+            <a href={`mailto:${t.contact.email}`} className="bg-green-800 rounded-xl p-6 text-center hover:bg-green-700 transition">
+              <Mail className="w-10 h-10 mx-auto mb-4 text-green-300" />
+              <h3 className="font-semibold mb-2">Email</h3>
+              <p className="text-green-100">{t.contact.email}</p>
+            </a>
+            <div className="bg-green-800 rounded-xl p-6 text-center">
+              <MapPin className="w-10 h-10 mx-auto mb-4 text-green-300" />
+              <h3 className="font-semibold mb-2">Adresse</h3>
+              <p className="text-green-100">{t.contact.address}</p>
             </div>
           </div>
         </div>
@@ -246,16 +272,14 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
-              <ShoppingBag className="w-5 h-5 text-white" />
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+              <Leaf className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold">ECO BAG</span>
+            <span className="text-lg font-bold">ECO BAG</span>
           </div>
-          <p className="text-gray-400 text-sm">
-            © 2024 ECO BAG Tunisie. Tous droits réservés.
-          </p>
+          <p className="text-gray-400 text-sm">{t.footer}</p>
         </div>
       </footer>
     </div>
