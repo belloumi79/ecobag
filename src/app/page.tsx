@@ -1,221 +1,354 @@
 "use client";
 
 import { useState } from "react";
-import { Leaf, ShoppingBag, MapPin, Phone, Mail, Check, Factory } from "lucide-react";
+import { Leaf, ShoppingBag, MapPin, Phone, Mail, Check, Factory, Menu, X, ChevronRight, Star, Truck, Shield } from "lucide-react";
+import Image from "next/image";
 
 const translations = {
   fr: {
-    nav: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact" },
+    nav: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact", clients: "Nos Clients" },
     hero: {
       badge: "🇹🇳 Fabrication 100% Tunisienne",
       title: "L'éco-responsabilité en sac",
-      subtitle: "Sacs et emballages en tissu non-tissé de haute qualité",
+      subtitle: "Sacs et emballages en tissu non-tissé de haute qualité, personnalisés pour votre marque",
       cta1: "Demander un devis",
-      cta2: "Voir les produits"
+      cta2: "Découvrir nos produits"
     },
-    stats: { delivered: "Sacs livrés", clients: "Clients satisfaits", eco: "Taux de recyclage" },
-    about: {
-      title: "À propos d'ECO BAG",
-      desc1: "ECO BAG est une entreprise tunisienne spécialisée dans la fabrication de sacs en tissu non-tissé et d'emballages écologiques.",
-      desc2: "Notre mission : offrir des solutions d'emballage durables, réutilisables et personnalisables pour les entreprises et les commerçants.",
-      features: ["Tissu non-tissé premium", "Personnalisable (logo, couleurs)", "Réutilisable & durable", "Fabriqué en Tunisie"]
-    },
+    stats: [
+      { value: "10+", label: "Années d'expérience" },
+      { value: "50+", label: "Clients satisfaits" },
+      { value: "1M+", label: "Sacs produits" },
+      { value: "100%", label: "Personnalisable" }
+    ],
     products: {
       title: "Nos Produits",
+      subtitle: "Des solutions d'emballage écologiques pour tous vos besoins",
       items: [
-        { name: "Sacs Cabas", desc: "Format standard, anses renforcées", price: "À partir de 1.500 DT" },
-        { name: "Pochettes & Sachets", desc: "Petit format, idéal cadeaux", price: "À partir de 0.800 DT" },
-        { name: "Emballages Personnalisés", desc: "Votre logo, vos couleurs", price: "Sur devis" },
-        { name: "Sacs Industriels", desc: "Format XXL, usage intensif", price: "Sur devis" }
+        {
+          name: "Sacs Shopping Personnalisés",
+          description: "Sacs avec anses, personnalisables avec votre logo et couleurs",
+          image: "/products/Add-a-heading-37-min-1-1024x536-1.webp",
+          tags: ["Commerce", "Événementiel"]
+        },
+        {
+          name: "Sacs Pharmacie Bilingues",
+          description: "Sacs spéciaux pour pharmacies avec texte FR/AR",
+          image: "/products/11224478_1719558774787792_8074364517910597348_n.jpg",
+          tags: ["Santé", "Pharmacie"]
+        },
+        {
+          name: "Sacs de Livraison Pizza",
+          description: "Sacs isothermes personnalisés pour livraison alimentaire",
+          image: "/products/1763.jpg",
+          tags: ["Restauration", "Food"]
+        },
+        {
+          name: "Housses Protection Auto",
+          description: "Protection sièges voiture en tissu non-tissé",
+          image: "/products/1.jfif",
+          tags: ["Automobile", "Garage"]
+        },
+        {
+          name: "Sacs de Semis Biodégradables",
+          description: "Sacs pour plantations écologiques, 100% biodégradables",
+          image: "/products/3.jpg",
+          tags: ["Agriculture", "Jardin"]
+        },
+        {
+          name: "Housses Protection Plantes",
+          description: "Protection hivernale pour arbres et plantes",
+          image: "/products/non-woven-auto-parts-covers-1000x1000.webp",
+          tags: ["Jardinage", "Agriculture"]
+        }
       ]
+    },
+    clients: {
+      title: "Ils nous font confiance",
+      subtitle: "Des marques qui ont choisi l'éco-responsabilité",
+      brands: ["Total", "Pharmacie", "Bon Marché", "Pizza Hut"]
     },
     why: {
       title: "Pourquoi choisir ECO BAG ?",
-      items: [
-        { title: "100% Écologique", desc: "Matériaux recyclables, production éco-responsable" },
-        { title: "Réutilisable", desc: "Durabilité supérieure, sacs qui durent des années" },
-        { title: "Personnalisable", desc: "Impression de votre logo et couleurs de marque" },
-        { title: "Prix Compétitif", desc: "Qualité premium à prix fabricant tunisien" },
-        { title: "Livraison Rapide", desc: "Délai court de production et livraison" },
-        { title: "Made in Tunisia", desc: "Fabrication 100% tunisienne, économie locale" }
+      features: [
+        { icon: "leaf", title: "100% Écologique", desc: "Tissu non-tissé recyclable et biodégradable" },
+        { icon: "shield", title: "Réutilisable", desc: "Durabilité exceptionnelle, +100 utilisations" },
+        { icon: "star", title: "Personnalisable", desc: "Votre logo, vos couleurs, votre message" },
+        { icon: "factory", title: "Made in Tunisie", desc: "Fabrication locale, emploi local" },
+        { icon: "truck", title: "Livraison Rapide", desc: "Délai 7-15 jours selon quantité" },
+        { icon: "check", title: "Garantie Qualité", desc: "Contrôle qualité à chaque étape" }
       ]
     },
     contact: {
       title: "Contactez-nous",
-      subtitle: "Demandez votre devis gratuit",
-      phone: "+216 94 569 302",
+      subtitle: "Demandez votre devis personnalisé gratuit",
+      phone: "00216 94 569 302",
       email: "ecobagtunisie@gmail.com",
-      address: "3 Rue Karama, Montfleury, Tunis"
+      address: "3 Rue Karama, Montfleury, Tunis",
+      form: {
+        name: "Votre nom",
+        company: "Entreprise",
+        phone: "Téléphone",
+        email: "Email",
+        message: "Votre message / Demande de devis",
+        submit: "Envoyer ma demande"
+      }
     },
-    footer: "© 2024 ECO BAG Tunisie. Tous droits réservés."
+    footer: "© 2026 ECO BAG Tunisie. Tous droits réservés."
   },
   ar: {
-    nav: { home: "الرئيسية", about: "من نحن", products: "المنتجات", contact: "اتصل بنا" },
+    nav: { home: "الرئيسية", about: "من نحن", products: "منتجاتنا", contact: "اتصل بنا", clients: "عملاؤنا" },
     hero: {
       badge: "🇹🇳 صناعة 100% تونسية",
       title: "الاستدامة في كل حقيبة",
-      subtitle: "أكياس وعبوات صديقة للبيئة بجودة عالية",
+      subtitle: "أكياس وعبوات من القماش غير المنسوج عالي الجودة، مخصصة لعلامتك التجارية",
       cta1: "اطلب عرض سعر",
-      cta2: "شاهد المنتجات"
+      cta2: "اكتشف منتجاتنا"
     },
-    stats: { delivered: "كيس تم توصيله", clients: "عميل راضٍ", eco: "نسبة إعادة التدوير" },
-    about: {
-      title: "عن ECO BAG",
-      desc1: "ECO BAG شركة تونسية متخصصة في تصنيع الأكياس والعبوات الصديقة للبيئة من القماش غير المنسوج.",
-      desc2: "مهمتنا: تقديم حلول تعبئة مستدامة وقابلة لإعادة الاستخدام وقابلة للتخصيص للشركات والتجار.",
-      features: ["قماش غير منسوج فاخر", "قابل للتخصيص (شعار - ألوان)", "قابل لإعادة الاستخدام - متين", "صنع في تونس"]
-    },
+    stats: [
+      { value: "10+", label: "سنوات خبرة" },
+      { value: "50+", label: "عميل راضٍ" },
+      { value: "1M+", label: "كيس تم إنتاجه" },
+      { value: "100%", label: "قابل للتخصيص" }
+    ],
     products: {
       title: "منتجاتنا",
+      subtitle: "حلول تغليف صديقة للبيئة لجميع احتياجاتك",
       items: [
-        { name: "أكياس كبيرة", desc: "الحجم القياسي، مقابض مقوّاة", price: "ابتداء من 1.500 دت" },
-        { name: "أكياس صغيرة", desc: "حجم صغير، مثالي للهدايا", price: "ابتداء من 0.800 دت" },
-        { name: "عبوات مخصصة", desc: "شعارك، ألوان علامتك التجارية", price: "حسب الطلب" },
-        { name: "أكياس صناعية", desc: "حجم كبير جداً، استخدام مكثف", price: "حسب الطلب" }
+        {
+          name: "أكياس تسوق مخصصة",
+          description: "أكياس بمقابض، قابلة للتخصيص بشعارك وألوانك",
+          image: "/products/Add-a-heading-37-min-1-1024x536-1.webp",
+          tags: ["تجارة", "فعاليات"]
+        },
+        {
+          name: "أكياس صيدلية ثنائية اللغة",
+          description: "أكياس خاصة بالصيدليات بنص FR/AR",
+          image: "/products/11224478_1719558774787792_8074364517910597348_n.jpg",
+          tags: ["صحة", "صيدلية"]
+        },
+        {
+          name: "أكياس توصيل البيتزا",
+          description: "أكياس معزولة مخصصة للتوصيل الغذائي",
+          image: "/products/1763.jpg",
+          tags: ["مطاعم", "توصيل"]
+        },
+        {
+          name: "أغطية حماية السيارات",
+          description: "حماية مقاعد السيارات من القماش غير المنسوج",
+          image: "/products/1.jfif",
+          tags: ["سيارات", "كراج"]
+        },
+        {
+          name: "أكياس زراعة قابلة للتحلل",
+          description: "أكياس للزراعة البيئية، 100% قابلة للتحلل",
+          image: "/products/3.jpg",
+          tags: ["زراعة", "حدائق"]
+        },
+        {
+          name: "أغطية حماية النباتات",
+          description: "حماية شتوية للأشجار والنباتات",
+          image: "/products/non-woven-auto-parts-covers-1000x1000.webp",
+          tags: ["بستنة", "زراعة"]
+        }
       ]
+    },
+    clients: {
+      title: "يثقون بنا",
+      subtitle: "علامات تجارية اختارت الاستدامة",
+      brands: ["توتال", "صيدلية", "بون مارشي", "بيتزا هت"]
     },
     why: {
       title: "لماذا تختار ECO BAG؟",
-      items: [
-        { title: "صديق للبيئة 100%", desc: "مواد قابلة لإعادة التدوير، إنتاج مسؤول بيئياً" },
-        { title: "قابل لإعادة الاستخدام", desc: "متانة عالية، أكياس تدوم لسنوات" },
-        { title: "قابل للتخصيص", desc: "طباعة شعارك وألوان علامتك التجارية" },
-        { title: "أسعار تنافسية", desc: "جودة فاخرة بسعر الشركة التونسية" },
-        { title: "توصيل سريع", desc: "مدة إنتاج وتوصيل قصيرة" },
-        { title: "صنع في تونس", desc: "تصنيع 100% تونسي، اقتصاد محلي" }
+      features: [
+        { icon: "leaf", title: "100% صديق للبيئة", desc: "قماش غير منسوج قابل لإعادة التدوير والتحلل" },
+        { icon: "shield", title: "قابل لإعادة الاستخدام", desc: "متانة استثنائية، +100 استخدام" },
+        { icon: "star", title: "قابل للتخصيص", desc: "شعارك، ألوانك، رسالتك" },
+        { icon: "factory", title: "صنع في تونس", desc: "صناعة محلية، توظيف محلي" },
+        { icon: "truck", title: "توصيل سريع", desc: "مدة 7-15 يوم حسب الكمية" },
+        { icon: "check", title: "ضمان الجودة", desc: "مراقبة الجودة في كل مرحلة" }
       ]
     },
     contact: {
       title: "اتصل بنا",
-      subtitle: "اطلب عرض السعر المجاني الخاص بك",
+      subtitle: "اطلب عرض السعر المخصص المجاني الخاص بك",
       phone: "00216 94 569 302",
       email: "ecobagtunisie@gmail.com",
-      address: "3 شارع الكرامة، مونفلوري، تونس"
+      address: "3 شارع الكرامة، مونفلوري، تونس",
+      form: {
+        name: "اسمك",
+        company: "الشركة",
+        phone: "الهاتف",
+        email: "البريد الإلكتروني",
+        message: "رسالتك / طلب عرض السعر",
+        submit: "إرسال طلبي"
+      }
     },
-    footer: "© 2024 ECO BAG تونس. جميع الحقوق محفوظة."
+    footer: "© 2026 ECO BAG تونس. جميع الحقوق محفوظة."
   }
 };
 
 export default function Home() {
   const [lang, setLang] = useState<"fr" | "ar">("fr");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", company: "", phone: "", email: "", message: "" });
   const t = translations[lang];
   const isRTL = lang === "ar";
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    window.location.href = `mailto:ecobagtunisie@gmail.com?subject=Demande devis - ${formData.company}&body=${formData.message}%0A%0ANom: ${formData.name}%0AEntreprise: ${formData.company}%0ATel: ${formData.phone}`;
+  };
+
+  const getIcon = (iconName: string) => {
+    const icons: Record<string, React.ReactNode> = {
+      leaf: <Leaf className="w-6 h-6" />,
+      shield: <Shield className="w-6 h-6" />,
+      star: <Star className="w-6 h-6" />,
+      factory: <Factory className="w-6 h-6" />,
+      truck: <Truck className="w-6 h-6" />,
+      check: <Check className="w-6 h-6" />
+    };
+    return icons[iconName] || <Check className="w-6 h-6" />;
+  };
+
   return (
-    <div className={`min-h-screen bg-gray-50 ${isRTL ? "font-sans text-right" : ""}`} dir={isRTL ? "rtl" : "ltr"}>
-      {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-              <Leaf className="w-6 h-6 text-white" />
+    <div className={`min-h-screen bg-white ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+      {/* Navigation */}
+      <nav className="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                <Leaf className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-xl font-bold text-gray-900">ECO BAG</span>
             </div>
-            <span className="text-xl font-bold text-green-800">ECO BAG</span>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            <a href="#accueil" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.home}</a>
-            <a href="#apropos" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.about}</a>
-            <a href="#produits" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.products}</a>
-            <a href="#contact" className="text-gray-700 hover:text-green-600 font-medium">{t.nav.contact}</a>
-          </nav>
-          <div className="flex gap-2">
-            <button onClick={() => setLang("fr")} className={`px-3 py-1 rounded font-medium transition ${lang === "fr" ? "bg-green-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}>FR</button>
-            <button onClick={() => setLang("ar")} className={`px-3 py-1 rounded font-medium transition ${lang === "ar" ? "bg-green-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}>AR</button>
+            
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#accueil" className="text-gray-700 hover:text-green-600 transition">{t.nav.home}</a>
+              <a href="#produits" className="text-gray-700 hover:text-green-600 transition">{t.nav.products}</a>
+              <a href="#clients" className="text-gray-700 hover:text-green-600 transition">{t.nav.clients}</a>
+              <a href="#contact" className="text-gray-700 hover:text-green-600 transition">{t.nav.contact}</a>
+              <button 
+                onClick={() => setLang(lang === "fr" ? "ar" : "fr")}
+                className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium hover:bg-green-200 transition"
+              >
+                {lang === "fr" ? "AR" : "FR"}
+              </button>
+            </div>
+
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
-      </header>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t">
+            <div className="px-4 py-3 space-y-2">
+              <a href="#accueil" className="block py-2 text-gray-700">{t.nav.home}</a>
+              <a href="#produits" className="block py-2 text-gray-700">{t.nav.products}</a>
+              <a href="#clients" className="block py-2 text-gray-700">{t.nav.clients}</a>
+              <a href="#contact" className="block py-2 text-gray-700">{t.nav.contact}</a>
+              <button 
+                onClick={() => setLang(lang === "fr" ? "ar" : "fr")}
+                className="w-full py-2 bg-green-100 text-green-700 rounded-lg"
+              >
+                {lang === "fr" ? "العربية" : "Français"}
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
 
       {/* Hero Section */}
-      <section id="accueil" className="bg-gradient-to-br from-green-900 via-green-800 to-green-700 text-white py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <span className="bg-green-600/80 text-white px-4 py-1 rounded-full text-sm font-medium">{t.hero.badge}</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">{t.hero.title}</h1>
-          <p className="text-xl md:text-2xl text-green-100 mb-8 max-w-2xl">{t.hero.subtitle}</p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#contact" className="bg-white text-green-800 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition inline-flex items-center gap-2">
-              <Phone className="w-5 h-5" />
-              {t.hero.cta1}
-            </a>
-            <a href="#produits" className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-500 transition inline-flex items-center gap-2">
-              <ShoppingBag className="w-5 h-5" />
-              {t.hero.cta2}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="bg-green-50 py-12 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-700">+500K</div>
-            <div className="text-gray-700 mt-1">{t.stats.delivered}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-700">+150</div>
-            <div className="text-gray-700 mt-1">{t.stats.clients}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-700">100%</div>
-            <div className="text-gray-700 mt-1">{t.stats.eco}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-700">2019</div>
-            <div className="text-gray-700 mt-1">Depuis</div>
-          </div>
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="apropos" className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Factory className="w-6 h-6 text-green-600" />
-              <h2 className="text-3xl font-bold text-gray-900">{t.about.title}</h2>
+      <section id="accueil" className="pt-24 pb-16 bg-gradient-to-br from-green-50 via-white to-green-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6">
+              <span>{t.hero.badge}</span>
             </div>
-            <p className="text-gray-700 text-lg leading-relaxed mb-4">{t.about.desc1}</p>
-            <p className="text-gray-700 text-lg leading-relaxed">{t.about.desc2}</p>
-            <ul className="mt-6 space-y-3">
-              {t.about.features.map((feature, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <Check className="w-5 h-5 text-green-500" />
-                  <span className="text-gray-700">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-green-100 rounded-2xl p-8">
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-              <div className="h-48 bg-green-600 flex items-center justify-center">
-                <Leaf className="w-24 h-24 text-white" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">ECO BAG</h3>
-                <p className="text-gray-600">Il se caractérise par sa durabilité et sa haute qualité c'est un modèle unique dans la préservation de l'environnement.</p>
-              </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              {t.hero.title}
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              {t.hero.subtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#contact" className="bg-green-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-700 transition inline-flex items-center justify-center gap-2">
+                <Phone className="w-5 h-5" />
+                {t.hero.cta1}
+              </a>
+              <a href="#produits" className="bg-white text-green-700 border-2 border-green-600 px-8 py-4 rounded-xl font-semibold hover:bg-green-50 transition inline-flex items-center justify-center gap-2">
+                <ShoppingBag className="w-5 h-5" />
+                {t.hero.cta2}
+              </a>
             </div>
           </div>
+
+          {/* Stats */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {t.stats.map((stat, i) => (
+              <div key={i} className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100">
+                <div className="text-3xl font-bold text-green-600 mb-1">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Products */}
-      <section id="produits" className="py-16 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">{t.products.title}</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Products Section */}
+      <section id="produits" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.products.title}</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t.products.subtitle}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t.products.items.map((product, i) => (
-              <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
-                <div className="h-40 bg-green-600 flex items-center justify-center">
-                  <ShoppingBag className="w-16 h-16 text-white" />
+              <div key={i} className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+                <div className="relative h-56 bg-gray-100 overflow-hidden">
+                  <Image 
+                    src={product.image} 
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-gray-900 mb-2">{product.name}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{product.desc}</p>
-                  <div className="text-green-700 font-semibold">{product.price}</div>
+                <div className="p-6">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {product.tags.map((tag, j) => (
+                      <span key={j} className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">{tag}</span>
+                    ))}
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{product.name}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                  <a href="#contact" className="inline-flex items-center gap-1 text-green-600 font-medium hover:gap-2 transition">
+                    {lang === "fr" ? "Demander un devis" : "اطلب عرض سعر"} <ChevronRight className="w-4 h-4" />
+                  </a>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Clients Section */}
+      <section id="clients" className="py-16 bg-green-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.clients.title}</h2>
+            <p className="text-gray-600">{t.clients.subtitle}</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 items-center">
+            {t.clients.brands.map((brand, i) => (
+              <div key={i} className="bg-white px-8 py-4 rounded-xl shadow-sm font-semibold text-gray-700">
+                {brand}
               </div>
             ))}
           </div>
@@ -223,63 +356,132 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">{t.why.title}</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t.why.items.map((item, i) => (
-              <div key={i} className="bg-green-50 rounded-xl p-6 hover:bg-green-100 transition">
-                <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4 text-white">
-                  {i === 0 && <Leaf className="w-6 h-6" />}
-                  {i === 1 && <ShoppingBag className="w-6 h-6" />}
-                  {i === 2 && <Check className="w-6 h-6" />}
-                  {i === 3 && <Leaf className="w-6 h-6" />}
-                  {i === 4 && <ShoppingBag className="w-6 h-6" />}
-                  {i === 5 && <MapPin className="w-6 h-6" />}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.why.title}</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {t.why.features.map((feature, i) => (
+              <div key={i} className="p-6 bg-gray-50 rounded-2xl hover:bg-green-50 transition">
+                <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center text-white mb-4">
+                  {getIcon(feature.icon)}
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600 text-sm">{feature.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-16 px-4 bg-green-900 text-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">{t.contact.title}</h2>
-          <p className="text-center text-green-100 mb-12">{t.contact.subtitle}</p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <a href={`tel:${t.contact.phone.replace(/\s/g, '')}`} className="bg-green-800 rounded-xl p-6 text-center hover:bg-green-700 transition">
-              <Phone className="w-10 h-10 mx-auto mb-4 text-green-300" />
-              <h3 className="font-semibold mb-2">Téléphone</h3>
-              <p className="text-green-100">{t.contact.phone}</p>
-            </a>
-            <a href={`mailto:${t.contact.email}`} className="bg-green-800 rounded-xl p-6 text-center hover:bg-green-700 transition">
-              <Mail className="w-10 h-10 mx-auto mb-4 text-green-300" />
-              <h3 className="font-semibold mb-2">Email</h3>
-              <p className="text-green-100">{t.contact.email}</p>
-            </a>
-            <div className="bg-green-800 rounded-xl p-6 text-center">
-              <MapPin className="w-10 h-10 mx-auto mb-4 text-green-300" />
-              <h3 className="font-semibold mb-2">Adresse</h3>
-              <p className="text-green-100">{t.contact.address}</p>
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gradient-to-br from-green-900 to-green-800 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.contact.title}</h2>
+              <p className="text-green-100 text-xl mb-8">{t.contact.subtitle}</p>
+              
+              <div className="space-y-6">
+                <a href={`tel:${t.contact.phone}`} className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-green-200">{lang === "fr" ? "Téléphone" : "الهاتف"}</div>
+                    <div className="font-semibold">{t.contact.phone}</div>
+                  </div>
+                </a>
+                
+                <a href={`mailto:${t.contact.email}`} className="flex items-center gap-4 p-4 bg-white/10 rounded-xl hover:bg-white/20 transition">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                    <Mail className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-green-200">Email</div>
+                    <div className="font-semibold">{t.contact.email}</div>
+                  </div>
+                </a>
+                
+                <div className="flex items-center gap-4 p-4 bg-white/10 rounded-xl">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-green-200">{lang === "fr" ? "Adresse" : "العنوان"}</div>
+                    <div className="font-semibold">{t.contact.address}</div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 text-gray-900">
+              <h3 className="text-2xl font-bold mb-6">{lang === "fr" ? "Demande de devis" : "طلب عرض سعر"}</h3>
+              <div className="space-y-4">
+                <input 
+                  type="text" 
+                  placeholder={t.contact.form.name}
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  required
+                />
+                <input 
+                  type="text" 
+                  placeholder={t.contact.form.company}
+                  value={formData.company}
+                  onChange={(e) => setFormData({...formData, company: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+                <input 
+                  type="tel" 
+                  placeholder={t.contact.form.phone}
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  required
+                />
+                <input 
+                  type="email" 
+                  placeholder={t.contact.form.email}
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+                <textarea 
+                  placeholder={t.contact.form.message}
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+                  required
+                />
+                <button 
+                  type="submit"
+                  className="w-full bg-green-600 text-white py-4 rounded-xl font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2"
+                >
+                  <Mail className="w-5 h-5" />
+                  {t.contact.form.submit}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-              <Leaf className="w-5 h-5 text-white" />
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                <Leaf className="w-5 h-5" />
+              </div>
+              <span className="text-lg font-bold">ECO BAG</span>
             </div>
-            <span className="text-lg font-bold">ECO BAG</span>
+            <p className="text-gray-400 text-sm">{t.footer}</p>
           </div>
-          <p className="text-gray-400 text-sm">{t.footer}</p>
         </div>
       </footer>
     </div>

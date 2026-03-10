@@ -13,15 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ECO BAG Tunisie | Sacs et emballages écologiques",
-  description: "Fabricant tunisien de sacs en tissu non-tissé et emballages écologiques. 100% écologique, réutilisable et personnalisable.",
-  keywords: "sacs écologiques, emballages tunisie, tissu non-tissé, sacs réutilisables, ecobag",
+  title: "ECO BAG Tunisie | Sacs & Emballages Écologiques",
+  description: "Fabricant tunisien de sacs et emballages en tissu non-tissé personnalisés. Solutions écologiques pour pharmacies, commerces, restauration et agriculture. Devis gratuit.",
+  keywords: "sacs écologiques, emballages tunisie, tissu non-tissé, sacs personnalisés, packaging durable, sacs pharmacie, sacs shopping, housses protection, sacs biodégradables, صناعة تونسية, أكياس صديقة للبيئة",
   authors: [{ name: "ECO BAG Tunisie" }],
   openGraph: {
-    title: "ECO BAG Tunisie",
-    description: "Sacs et emballages écologiques made in Tunisia",
+    title: "ECO BAG Tunisie | Sacs & Emballages Écologiques",
+    description: "Fabricant tunisien de sacs et emballages en tissu non-tissé. Solutions écologiques personnalisées.",
     type: "website",
     locale: "fr_FR",
+    alternateLocale: ["ar_TN"],
   },
 };
 
