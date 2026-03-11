@@ -220,8 +220,8 @@ const translations = {
       themeText: "Promote circular economy to strengthen the ecological transition and put an end to plastic pollution"
     },
     carbon: {
-      badge: "Measurable Environmental Impact",
-      title: "Concrete reduction of carbon footprint",
+      badge: "Measurable Impact",
+      title: "Concrete carbon footprint reduction",
       subtitle: "Each ECO BAG contributes actively to Tunisia's sustainable development goals",
       impact1: { title: "Carbon Economy", value: "-80%", desc: "Less CO₂ emissions vs plastic bag production" },
       impact2: { title: "Zero Waste", value: "100%", desc: "Biodegradable at end of life" },
