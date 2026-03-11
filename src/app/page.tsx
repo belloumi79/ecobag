@@ -29,7 +29,8 @@ const translations = {
         reutilisationsLabel: "Réutilisations par sac",
         dechet: "0",
         dechetLabel: "Déchet plastique évité"
-      }
+      },
+      statsBadge: "Impact mesurable"
     },
     products: {
       title: "Nos Produits Écologiques",
@@ -113,7 +114,8 @@ const translations = {
         reutilisationsLabel: "مرة استخدام لكل كيس",
         dechet: "0",
         dechetLabel: "نفايات بلاستيكية مُتجنبة"
-      }
+      },
+      statsBadge: "تأثير قابل للقياس"
     },
     products: {
       title: "منتجاتنا الصديقة للبيئة",
@@ -197,7 +199,8 @@ const translations = {
         reutilisationsLabel: "Reuses per bag",
         dechet: "0",
         dechetLabel: "Plastic waste avoided"
-      }
+      },
+      statsBadge: "Measurable Impact"
     },
     products: {
       title: "Our Eco-friendly Products",
@@ -411,7 +414,7 @@ function AboutSection({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" })
             <p className="text-gray-600 mb-6 leading-relaxed">{t.about.para3}</p>
             
             <div className="bg-green-50 p-6 rounded-xl">
-              <h3 className="font-bold text-green-800 mb-4">{lang === "fr" ? "Impact mesurable" : "تأثير قابل للقياس"}</h3>
+              <h3 className="font-bold text-green-800 mb-4">{t.about.statsBadge}</h3>
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">{t.about.stats.co2}</div>
