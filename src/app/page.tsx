@@ -1,3 +1,5 @@
+// ECO BAG Website - Last updated: 2026
+// Trilingual: FR / AR / EN
 "use client";
 
 import { useState } from "react";
