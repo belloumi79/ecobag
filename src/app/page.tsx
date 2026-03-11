@@ -172,13 +172,97 @@ const translations = {
       }
     },
     footer: "© 2025 ECO BAG تونس - أكياس صديقة للبيئة معتمدة من وزارة البيئة"
+  },
+  en: {
+    nav: { home: "Home", about: "About", products: "Products", contact: "Contact", carbon: "Carbon Footprint" },
+    hero: {
+      badge: "🇹🇳 Certified by Ministry of Environment",
+      title: "Eco-responsibility in a bag",
+      subtitle: "Eco-friendly bags and packaging in non-woven fabric - Premium quality customizable for your brand",
+      cta1: "Request a quote",
+      cta2: "Discover our products"
+    },
+    about: {
+      badge: "Our mission",
+      title: "Reducing the carbon footprint of Tunisian companies",
+      para1: "ECO BAG Tunisia is part of the national strategy for ecological transition and the fight against plastic pollution. Our mission: to offer sustainable alternatives to single-use packaging.",
+      para2: "Within the framework of Decree No. 32 of January 16, 2020 prohibiting single-use plastic bags, we accompany companies in their ecological transformation with measurable solutions.",
+      para3: "Each reusable ECO BAG replaces up to 500 single-use plastic bags over its lifetime, significantly reducing CO₂ emissions related to production and transport.",
+      stats: {
+        co2: "-80%",
+        co2Label: "CO₂ emissions vs plastic bags",
+        reutilisations: "100+",
+        reutilisationsLabel: "Reuses per bag",
+        dechet: "0",
+        dechetLabel: "Plastic waste avoided"
+      }
+    },
+    products: {
+      title: "Our Eco-friendly Products",
+      subtitle: "Sustainable solutions for each sector of activity",
+      items: [
+        { name: "Shopping Bags", desc: "Customizable with logo, reinforced handles", image: "/products/sac-uni-boxbag.webp" },
+        { name: "Pharmacy Bags", desc: "Conform to health standards, biodegradable", image: "/products/11224478_1719558774787792_8074364517910597348_n.jpg" },
+        { name: "Delivery Bags", desc: "Insulated for restaurants, washable", image: "/products/ultrasonic-pizza-bag-nonwoven-pp-01-510x510.jpg" },
+        { name: "Protection Covers", desc: "For cars, seats, reusable", image: "/products/1.jfif" },
+        { name: "Agricultural Bags", desc: "Plants, seeds, biodegradable", image: "/products/sacs-a-semis-a-enterrer-lot-de-500.webp" },
+        { name: "Premium Packaging", desc: "Gift box, luxury, durable", image: "/products/1763.jpg" }
+      ],
+      cta: "Customize your order"
+    },
+    certificate: {
+      badge: "Official Certification 2025",
+      title: "Recognized by the Ministry of Environment",
+      subtitle: "Certificate of participation in the national competition for the fight against plastic pollution",
+      recognition: "National Recognition",
+      recognitionText: "ECO BAG was selected among the best initiatives for promoting circular economy in Tunisia, within the \"Littoral Sans Plastique\" program supported by the World Bank.",
+      theme: "Competition Theme",
+      themeText: "Promote circular economy to strengthen the ecological transition and put an end to plastic pollution"
+    },
+    carbon: {
+      badge: "Measurable Environmental Impact",
+      title: "Concrete reduction of carbon footprint",
+      subtitle: "Each ECO BAG contributes actively to Tunisia's sustainable development goals",
+      impact1: { title: "Carbon Economy", value: "-80%", desc: "Less CO₂ emissions vs plastic bag production" },
+      impact2: { title: "Zero Waste", value: "100%", desc: "Biodegradable at end of life" },
+      impact3: { title: "Consumption", value: "-70%", desc: "Less energy over the complete lifecycle" },
+      context: "Strategic Tunisian Context",
+      contextText: "Tunisia has committed to a decarbonization path with the ban on plastic bags (Decree 2020-32). ECO BAG accompanies this transition with locally produced solutions in Tunisia.",
+      cta: "Calculate your carbon savings"
+    },
+    why: {
+      title: "Why choose ECO BAG?",
+      subtitle: "Eco-friendly packaging that reflects your environmental values",
+      features: {
+        eco: "100% Eco-friendly",
+        reusable: "Reusable 100+ times",
+        custom: "Complete customization",
+        local: "Made in Tunisia 🇹🇳"
+      }
+    },
+    contact: {
+      title: "Contact us",
+      subtitle: "Let's discuss your eco-packaging project",
+      address: { title: "Address" },
+      phone: { title: "Phone" },
+      email: { title: "Email" },
+      cta: "Call now",
+      form: {
+        name: "Your name",
+        email: "Your email",
+        phone: "Your phone",
+        message: "Your message...",
+        submit: "Send the request"
+      }
+    },
+    footer: "© 2025 ECO BAG Tunisia - Eco-friendly bags certified by the Ministry of Environment"
   }
 };
 
 type Translation = typeof translations.fr;
 
 export default function Home() {
-  const [lang, setLang] = useState<"fr" | "ar">("fr");
+  const [lang, setLang] = useState<"fr" | "ar" | "en">("fr");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const t = translations[lang];
 
@@ -210,9 +294,20 @@ export default function Home() {
             </nav>
 
             <div className="flex items-center gap-3">
-              <button onClick={() => setLang(lang === "fr" ? "ar" : "fr")} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-200 transition">
-                {lang === "fr" ? "AR 🇹🇳" : "FR 🇫🇷"}
-              </button>
+              <div className="flex items-center gap-2">
+                {lang !== "fr" && (
+                  <button onClick={() => setLang("fr")} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-200 transition">FR</button>
+                )}
+                {lang !== "ar" && (
+                  <button onClick={() => setLang("ar")} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-200 transition">AR</button>
+                )}
+                {lang !== "en" && (
+                  <button onClick={() => setLang("en")} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-200 transition">EN</button>
+                )}
+                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                  {lang === "fr" ? "🇫🇷 FR" : lang === "ar" ? "🇹🇳 AR" : "🇬🇧 EN"}
+                </span>
+              </div>
               
               {/* Mobile menu button */}
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden p-2">
@@ -295,7 +390,7 @@ export default function Home() {
   );
 }
 
-function AboutSection({ t, lang }: { t: Translation; lang: "fr" | "ar" }) {
+function AboutSection({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" }) {
   return (
     <section id="a-propos" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -341,7 +436,7 @@ function AboutSection({ t, lang }: { t: Translation; lang: "fr" | "ar" }) {
   );
 }
 
-function CarbonSection({ t, lang }: { t: Translation; lang: "fr" | "ar" }) {
+function CarbonSection({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" }) {
   return (
     <section id="empreinte" className="py-16 bg-gradient-to-br from-green-900 to-emerald-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -450,7 +545,7 @@ function Certificate({ t }: { t: Translation }) {
   );
 }
 
-function ProductsSection({ t, lang }: { t: Translation; lang: "fr" | "ar" }) {
+function ProductsSection({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" }) {
   return (
     <section id="produits" className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -510,7 +605,7 @@ function WhyChooseUs({ t }: { t: Translation }) {
   );
 }
 
-function Contact({ t, lang }: { t: Translation; lang: "fr" | "ar" }) {
+function Contact({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" }) {
   return (
     <section id="contact" className="py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -537,7 +632,7 @@ function Contact({ t, lang }: { t: Translation; lang: "fr" | "ar" }) {
               </div>
               <div>
                 <h4 className="font-semibold">{t.contact.phone.title}</h4>
-                <p className="text-gray-600">00216 94 569 302</p>
+                <p className="text-gray-600"><span dir="ltr">00216 94 569 302</span></p>
               </div>
             </div>
             
