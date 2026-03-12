@@ -438,46 +438,46 @@ function AboutSection({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" })
 
 function CarbonSection({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" }) {
   return (
-    <section id="empreinte" className="py-16 bg-gradient-to-br from-green-900 to-emerald-800 text-white">
+    <section id="empreinte" className="py-16 bg-emerald-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <Leaf className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 bg-emerald-700 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500">
+            <TrendingDown className="w-4 h-4" />
             {t.carbon.badge}
           </div>
-          <h2 className="text-3xl font-bold mb-4">{t.carbon.title}</h2>
-          <p className="text-green-100 max-w-2xl mx-auto">{t.carbon.subtitle}</p>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.carbon.title}</h2>
+          <p className="text-emerald-100 text-lg max-w-2xl mx-auto">{t.carbon.subtitle}</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-white/10 backdrop-blur p-6 rounded-xl text-center">
-            <div className="text-4xl font-bold mb-2">{t.carbon.impact1.value}</div>
-            <div className="font-semibold mb-1">{t.carbon.impact1.title}</div>
-            <div className="text-sm text-green-200">{t.carbon.impact1.desc}</div>
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="bg-white p-6 rounded-xl text-center shadow-lg">
+            <div className="text-5xl font-bold mb-2 text-emerald-700">{t.carbon.impact1.value}</div>
+            <div className="font-bold text-gray-900 text-lg mb-2">{t.carbon.impact1.title}</div>
+            <div className="text-sm text-gray-600">{t.carbon.impact1.desc}</div>
           </div>
-          <div className="bg-white/10 backdrop-blur p-6 rounded-xl text-center">
-            <div className="text-4xl font-bold mb-2">{t.carbon.impact2.value}</div>
-            <div className="font-semibold mb-1">{t.carbon.impact2.title}</div>
-            <div className="text-sm text-green-200">{t.carbon.impact2.desc}</div>
+          <div className="bg-white p-6 rounded-xl text-center shadow-lg">
+            <div className="text-5xl font-bold mb-2 text-emerald-700">{t.carbon.impact2.value}</div>
+            <div className="font-bold text-gray-900 text-lg mb-2">{t.carbon.impact2.title}</div>
+            <div className="text-sm text-gray-600">{t.carbon.impact2.desc}</div>
           </div>
-          <div className="bg-white/10 backdrop-blur p-6 rounded-xl text-center">
-            <div className="text-4xl font-bold mb-2">{t.carbon.impact3.value}</div>
-            <div className="font-semibold mb-1">{t.carbon.impact3.title}</div>
-            <div className="text-sm text-green-200">{t.carbon.impact3.desc}</div>
+          <div className="bg-white p-6 rounded-xl text-center shadow-lg">
+            <div className="text-5xl font-bold mb-2 text-emerald-700">{t.carbon.impact3.value}</div>
+            <div className="font-bold text-gray-900 text-lg mb-2">{t.carbon.impact3.title}</div>
+            <div className="text-sm text-gray-600">{t.carbon.impact3.desc}</div>
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur rounded-xl p-8">
+        <div className="bg-emerald-800 rounded-xl p-8 border border-emerald-700">
           <div className="flex items-start gap-4">
-            <Globe className="w-8 h-8 flex-shrink-0" />
-            <div className={lang === "ar" ? "text-right" : ""}>
-              <h3 className="font-bold text-xl mb-2">{t.carbon.context}</h3>
-              <p className="text-green-100 mb-4">{t.carbon.contextText}</p>
+            <Globe className="w-10 h-10 flex-shrink-0" />
+            <div className={lang === "ar" ? "text-right flex-1" : "flex-1"}>
+              <h3 className="font-bold text-2xl mb-3">{t.carbon.context}</h3>
+              <p className="text-emerald-100 mb-6 text-lg leading-relaxed">{t.carbon.contextText}</p>
               <div className="flex flex-wrap gap-3">
-                <span className="bg-white/20 px-3 py-1 rounded-full text-sm">Décret 2020-32</span>
-                <span className="bg-white/20 px-3 py-1 rounded-full text-sm">Banque Mondiale</span>
-                <span className="bg-white/20 px-3 py-1 rounded-full text-sm">Ministère Environnement</span>
-                <span className="bg-white/20 px-3 py-1 rounded-full text-sm">Made in Tunisia</span>
+                <span className="bg-emerald-700 px-4 py-2 rounded-full text-sm font-semibold border border-emerald-500">Decret 2020-32</span>
+                <span className="bg-emerald-700 px-4 py-2 rounded-full text-sm font-semibold border border-emerald-500">Banque Mondiale</span>
+                <span className="bg-emerald-700 px-4 py-2 rounded-full text-sm font-semibold border border-emerald-500">Ministere Environnement</span>
+                <span className="bg-emerald-700 px-4 py-2 rounded-full text-sm font-semibold border border-emerald-500">Made in Tunisia</span>
               </div>
             </div>
           </div>
