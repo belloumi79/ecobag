@@ -289,7 +289,7 @@ export default function Home() {
               <button onClick={() => scrollToSection('accueil')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.home}</button>
               <button onClick={() => scrollToSection('a-propos')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.about}</button>
               <button onClick={() => scrollToSection('produits')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.products}</button>
-              <button onClick={() => scrollToSection('portfolio')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.portfolio}</button>
+              <a href="/portfolio" className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.portfolio}</a>
               <button onClick={() => scrollToSection('empreinte')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.carbon}</button>
               <button onClick={() => scrollToSection('contact')} className="text-gray-600 hover:text-green-600 transition font-medium">{t.nav.contact}</button>
             </nav>
