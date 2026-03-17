@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   authors: [{ name: "ECO BAG Tunisie" }],
   icons: {
     icon: "/favicon.ico",
-    apple: "/logo.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "ECO BAG Tunisie | Sacs & Emballages Écologiques",
