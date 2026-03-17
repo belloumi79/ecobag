@@ -87,7 +87,7 @@ const translations = {
         submit: "Envoyer la demande"
       }
     },
-    footer: "© 2025 ECO BAG Tunisie - Sacs écologiques certifiés Ministère de l'Environnement"
+    footer: "© 2025 ECO BAG Tunisie - Sacs écologiques certifiés Ministère de l'Environnement | www.ecobagtn.tn"
   },
   ar: {
     nav: { home: "الرئيسية", about: "من نحن", products: "منتجاتنا", contact: "اتصل بنا", carbon: "البصمة الكربونية", portfolio: "معرض الأعمال" },
@@ -171,7 +171,7 @@ const translations = {
         submit: "إرسال الطلب"
       }
     },
-    footer: "© 2025 ECO BAG تونس - أكياس صديقة للبيئة معتمدة من وزارة البيئة"
+    footer: "© 2025 ECO BAG تونس - أكياس صديقة للبيئة معتمدة من وزارة البيئة | www.ecobagtn.tn"
   },
   en: {
     nav: { home: "Home", about: "About", products: "Products", contact: "Contact", carbon: "Carbon Footprint", portfolio: "Portfolio" },
@@ -255,7 +255,7 @@ const translations = {
         submit: "Send the request"
       }
     },
-    footer: "© 2025 ECO BAG Tunisia - Eco-friendly bags certified by the Ministry of Environment"
+    footer: "© 2025 ECO BAG Tunisia - Eco-friendly bags certified by Ministry of Environment | www.ecobagtn.tn"
   }
 };
 

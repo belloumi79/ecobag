@@ -1,10 +1,10 @@
 {
   "redirects": [
     {
-      "source": "/",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.ecobagtn.tn" }],
-      "destination": "https://ecobagtn.tn/",
-      "permanent": true
+      "destination": "https://ecobagtn.tn/$1",
+      "permanent": false
     }
   ],
   "headers": [
