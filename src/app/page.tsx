@@ -657,11 +657,21 @@ function Contact({ t, lang }: { t: Translation; lang: "fr" | "ar" | "en" }) {
           </div>
           
           <div className="bg-gray-50 p-6 rounded-2xl">
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder={t.contact.form.name} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" />
-              <input type="email" placeholder={t.contact.form.email} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" />
-              <input type="tel" placeholder={t.contact.form.phone} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" />
-              <textarea placeholder={t.contact.form.message} rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600"></textarea>
+            <form className="space-y-4" onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+              const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+              const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+              const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+              const subject = encodeURIComponent('Nouveau message de ' + name);
+              const body = encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\nTéléphone: ' + phone + '\n\nMessage:\n' + message);
+              window.location.href = 'mailto:ecobagtunisie@gmail.com?subject=' + subject + '&body=' + body;
+            }}>
+              <input type="text" name="name" placeholder={t.contact.form.name} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" required />
+              <input type="email" name="email" placeholder={t.contact.form.email} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" required />
+              <input type="tel" name="phone" placeholder={t.contact.form.phone} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" />
+              <textarea name="message" placeholder={t.contact.form.message} rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-600" required></textarea>
               <button type="submit" className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
                 {t.contact.form.submit}
               </button>
