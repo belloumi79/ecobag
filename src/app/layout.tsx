@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   description: "Fabricant tunisien de sacs et emballages en tissu non-tissé personnalisés. Solutions écologiques pour pharmacies, commerces, restauration et agriculture. Devis gratuit.",
   keywords: "sacs écologiques, emballages tunisie, tissu non-tissé, sacs personnalisés, packaging durable, sacs pharmacie, sacs shopping, housses protection, sacs biodégradables, صناعة تونسية, أكياس صديقة للبيئة",
   authors: [{ name: "ECO BAG Tunisie" }],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "ECO BAG Tunisie | Sacs & Emballages Écologiques",
     description: "Fabricant tunisien de sacs et emballages en tissu non-tissé. Solutions écologiques personnalisées.",
