@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   keywords: "sacs écologiques, emballages tunisie, tissu non-tissé, sacs personnalisés, packaging durable, sacs pharmacie, sacs shopping, housses protection, sacs biodégradables, صناعة تونسية, أكياس صديقة للبيئة",
   authors: [{ name: "ECO BAG Tunisie" }],
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.png",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
