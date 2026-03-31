@@ -277,6 +277,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white" dir={lang === "ar" ? "rtl" : "ltr"}>
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <meta name="google-site-verification" content="9t5TJ8Y-LjMErqZ9jhmmReCi3W_vSbthMJSd9poIfpQ" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
