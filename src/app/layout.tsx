@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ecobagtn.tn"),
   title: "ECO BAG Tunisie | Sacs & Emballages Écologiques",
   description: "Fabricant tunisien de sacs et emballages en tissu non-tissé personnalisés. Solutions écologiques pour pharmacies, commerces, restauration et agriculture. Devis gratuit.",
-  keywords: "sacs écologiques, emballages tunisie, tissu non-tissé, sacs personnalisés, packaging durable, sacs pharmacie, sacs shopping, housses protection, sacs biodégradables, صناعة تونسية, أكياس صديقة للبيئة",
+  keywords: "sacs écologiques, emballage",
   authors: [{ name: "ECO BAG Tunisie" }],
   alternates: {
     canonical: "https://ecobagtn.tn",
@@ -101,6 +101,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+        <meta name="google-site-verification" content="googlef5bd2274c4b53ac7" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

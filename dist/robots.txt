@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/save-rubriques
+
+Sitemap: https://ecobagtn.tn/sitemap.xml
