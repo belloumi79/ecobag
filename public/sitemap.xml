@@ -2,22 +2,71 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
   <url>
     <loc>https://ecobagtn.tn/</loc>
+    <lastmod>2025-03-31</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://ecobagtn.tn/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://ecobagtn.tn/?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ecobagtn.tn/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ecobagtn.tn/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/products/1763.jpg</image:loc>
+      <image:title>ECO BAG Tunisie - Emballage premium écologique</image:title>
+      <image:caption>Gamme de sacs et emballages écologiques en tissu non-tissé ECO BAG Tunisie</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/products/sac-uni-boxbag.webp</image:loc>
+      <image:title>Sac shopping écologique en tissu non-tissé</image:title>
+      <image:caption>Sac shopping personnalisable avec logo et poignées renforcées</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/products/ultrasonic-pizza-bag-nonwoven-pp-01-510x510.jpg</image:loc>
+      <image:title>Sac de livraison isotherme pour restaurant</image:title>
+      <image:caption>Sac de livraison pizza isotherme en tissu non-tissé</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/products/sacs-a-semis-a-enterrer-lot-de-500.webp</image:loc>
+      <image:title>Sacs agricoles biodégradables pour semis</image:title>
+      <image:caption>Sacs agricoles biodégradables pour pépinières et semis</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/certificat-ministere.jpg</image:loc>
+      <image:title>Certificat Ministère de l'Environnement Tunisie</image:title>
+      <image:caption>Certificat officiel de participation au concours national contre la pollution plastique</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/logo.png</image:loc>
+      <image:title>Logo ECO BAG Tunisie</image:title>
+      <image:caption>Logo officiel ECO BAG Tunisie - Sacs écologiques</image:caption>
+    </image:image>
   </url>
+  <!-- Portfolio -->
   <url>
-    <loc>https://ecobagtn.tn/portfolio</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ecobagtn.tn/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://ecobagtn.tn/portfolio?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ecobagtn.tn/portfolio?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ecobagtn.tn/portfolio"/>
+    <loc>https://ecobagtn.tn/portfolio/</loc>
+    <lastmod>2025-03-31</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ecobagtn.tn/portfolio/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ecobagtn.tn/portfolio/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ecobagtn.tn/portfolio/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ecobagtn.tn/portfolio/"/>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/portfolio-images/sac-bretelles-otop-1.webp</image:loc>
+      <image:title>Sac à bretelles Otop - ECO BAG Tunisie</image:title>
+      <image:caption>Sac T-shirt résistant pour la grande distribution</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/portfolio-images/sac-carrefour-2.webp</image:loc>
+      <image:title>Sac Carrefour personnalisé - ECO BAG Tunisie</image:title>
+      <image:caption>Sac cabas grande contenance pour supermarchés avec logo imprimé</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ecobagtn.tn/portfolio-images/sac-total-1.webp</image:loc>
+      <image:title>Sac Total promotionnel - ECO BAG Tunisie</image:title>
+      <image:caption>Sac publicitaire robuste et réutilisable avec impression haute qualité</image:caption>
+    </image:image>
   </url>
 </urlset>
