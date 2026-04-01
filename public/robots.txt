@@ -3,4 +3,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/save-rubriques
 
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://ecobagtn.tn/sitemap.xml
